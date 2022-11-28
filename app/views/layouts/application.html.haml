@@ -1,0 +1,17 @@
+!!!
+%html
+%head
+  %title TaskRabbit
+  %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+  %meta(name="viewport" content="width=device-width,initial-scale=1")/
+  = csrf_meta_tags
+  = csp_meta_tag
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .container
+      - Category.all.each do |category|
+        -# sent a hash params to tasks controller index action
+        = link_to category.name, tasks_path(category: category.name), class: "text-decoration-none"
+      = yield

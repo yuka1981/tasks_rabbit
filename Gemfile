@@ -21,6 +21,7 @@ gem 'haml', '~> 6.0', '>= 6.0.12'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '~> 3.0'
 end
 
 group :development do
