@@ -10,8 +10,22 @@
   = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container
+        = link_to "TaskRabbit", root_path, class: "navbar-brand"
+        %button.navbar-toggler(aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button")
+          %span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item 
+              = link_to "All Task", root_path, class: "nav-link"
+            - Category.all.each do |category|
+              %li.nav-item
+                = link_to category.name, tasks_path(category: category.name), class: "nav-link"
+
+        = link_to "New Task", new_task_path, class: "navbar-text ml-auto text-decoration-none"
+
     .container
-      - Category.all.each do |category|
-        -# sent a hash params to tasks controller index action
-        = link_to category.name, tasks_path(category: category.name), class: "text-decoration-none"
-      = yield
+      .row
+        .col-md-8.offset-md-2
+          = yield
